@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术," />
 
 
 
@@ -84,19 +84,87 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="hooks
+
+啥是hooks
+why hooks
+ci中使用hooks
+
+
+demo
+
+session验证和auth验证
+
+在controller使用
+
+
+
+
+hooks
+
+啥是hooks
+
+可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
+why hooks
+
+对于这个验证，其实可以重新写一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://allennic.github.io/2016/11/04/hello-world/index.html">
+<meta property="og:title" content="hooks验证用户权限">
+<meta property="og:url" content="http://allennic.github.io/2016/10/09/hooks-md/index.html">
 <meta property="og:site_name" content="Allen for Hacking">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-11-04T01:40:40.000Z">
+<meta property="og:description" content="hooks
+
+啥是hooks
+why hooks
+ci中使用hooks
+
+
+demo
+
+session验证和auth验证
+
+在controller使用
+
+
+
+
+hooks
+
+啥是hooks
+
+可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
+why hooks
+
+对于这个验证，其实可以重新写一">
+<meta property="og:image" content="http://allennic.github.io/images/hooks.png">
+<meta property="og:updated_time" content="2016-10-09T10:45:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="hooks验证用户权限">
+<meta name="twitter:description" content="hooks
+
+啥是hooks
+why hooks
+ci中使用hooks
+
+
+demo
+
+session验证和auth验证
+
+在controller使用
+
+
+
+
+hooks
+
+啥是hooks
+
+可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
+why hooks
+
+对于这个验证，其实可以重新写一">
+<meta name="twitter:image" content="http://allennic.github.io/images/hooks.png">
 
 
 
@@ -117,10 +185,10 @@ Quick">
 
 
 
-  <link rel="canonical" href="http://allennic.github.io/2016/11/04/hello-world/"/>
+  <link rel="canonical" href="http://allennic.github.io/2016/10/09/hooks-md/"/>
 
 
-  <title> Hello World | Allen for Hacking </title>
+  <title> hooks验证用户权限 | Allen for Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -181,6 +249,14 @@ Quick">
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -193,14 +269,6 @@ Quick">
           <a href="/tags" rel="section">
             
             标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
-            
-            日程
           </a>
         </li>
       
@@ -242,7 +310,7 @@ Quick">
             
             
               
-                Hello World
+                hooks验证用户权限
               
             
           </h1>
@@ -254,8 +322,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T09:40:40+08:00" content="2016-11-04">
-              2016-11-04
+            <time itemprop="dateCreated" datetime="2016-10-09T17:05:00+08:00" content="2016-10-09">
+              2016-10-09
             </time>
           </span>
 
@@ -282,15 +350,42 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <ul>
+<li><p><a href="#hooks">hooks</a></p>
+<ul>
+<li><a href="#hooks1">啥是hooks</a></li>
+<li><a href="#hooks2">why hooks</a></li>
+<li><a href="#hooks3">ci中使用hooks</a></li>
+</ul>
+</li>
+<li><p><a href="#hooks4">demo</a></p>
+<ul>
+<li><a href="#1">session验证和auth验证</a></li>
+<li><a href="#2"></a></li>
+<li><a href="#3">在controller使用</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="hooks">hooks</h2>
+
+<h3 id="hooks1">啥是hooks</h3>
+
+<p>可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考<a href="http://codeigniter.org.cn/user_guide/general/hooks.html" target="_blank" rel="external">挂钩点列表</a></p>
+<h3 id="hooks2">why hooks</h3>
+
+<p>对于这个验证，其实可以重新写一个核心类，所有的controller都继承这个核心类，也可实现。为了认识hooks这东西就选择用hooks。</p>
+<h3 id="hooks3">ci中使用hooks</h3>
+
+<p>详见<a href="http://codeigniter.org.cn/forums/thread-10877-1-1.html" target="_blank" rel="external">这里</a></p>
+<h2 id="hooks">demo</h2>
+
+<h3 id="hooks1">session验证和auth验证</h3>
+
+<p>首先说明session验证是确定是否存在这个会话，auth是获取具体用户的资料（username等），auth是session生成时，我们自己给每个用户设置的标识，也发送给客户端作为cookie贮存（这样做的好处是通过这个cookie标识，才知道用户是哪个id，方便也容易取客户的数据）。</p>
+<p>然后就是在hooks写个方法。</p>
+<p><img src="images/hooks.png" alt=""></p>
+<p>就像没用mvc之前，用户登录前写个函数拦截在前面。hooks其实在我看来就是监视某个用户行为，触发拦截处理。</p>
 
       
     </div>
@@ -311,7 +406,27 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/30/ci-md/" rel="next" title="codeigniter用redis操作session">
+                <i class="fa fa-chevron-left"></i> codeigniter用redis操作session
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
@@ -376,13 +491,27 @@ Quick">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -399,6 +528,10 @@ Quick">
         
         
 
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 
+            src="http://music.163.com/outchain/player?type=2&id=3947467&auto=1&height=66">
+        </iframe>
+
       </section>
 
       
@@ -408,7 +541,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hooks"><span class="nav-number">1.</span> <span class="nav-text">hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks1"><span class="nav-number">1.1.</span> <span class="nav-text">啥是hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks2"><span class="nav-number">1.2.</span> <span class="nav-text">why hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks3"><span class="nav-number">1.3.</span> <span class="nav-text">ci中使用hooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hooks"><span class="nav-number">2.</span> <span class="nav-text">demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks1"><span class="nav-number">2.1.</span> <span class="nav-text">session验证和auth验证</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

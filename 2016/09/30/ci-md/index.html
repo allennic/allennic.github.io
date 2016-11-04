@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术," />
 
 
 
@@ -84,12 +84,94 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allen for Hacking">
-<meta property="og:url" content="http://allennic.github.io/index.html">
+<meta name="description" content="依赖安装
+predis
+phpredis
+redis－server
+
+
+ci中使用predis
+导入
+index.php改写
+在controller使用
+
+
+具体小项目实战
+为啥用redis
+cookie&amp;amp;&amp;amp;session黑人问号？
+php.ini配置和ci下config.php配置
+php从浏览器取cookie
+
+
+
+
+依赖安装
+
+predis项目地址:predisclone下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codeigniter用redis操作session">
+<meta property="og:url" content="http://allennic.github.io/2016/09/30/ci-md/index.html">
 <meta property="og:site_name" content="Allen for Hacking">
+<meta property="og:description" content="依赖安装
+predis
+phpredis
+redis－server
+
+
+ci中使用predis
+导入
+index.php改写
+在controller使用
+
+
+具体小项目实战
+为啥用redis
+cookie&amp;amp;&amp;amp;session黑人问号？
+php.ini配置和ci下config.php配置
+php从浏览器取cookie
+
+
+
+
+依赖安装
+
+predis项目地址:predisclone下">
+<meta property="og:image" content="http://allennic.github.io/images/11.png">
+<meta property="og:image" content="http://allennic.github.io/images/12.png">
+<meta property="og:image" content="http://allennic.github.io/images/13.png">
+<meta property="og:image" content="http://allennic.github.io/images/14.png">
+<meta property="og:image" content="http://allennic.github.io/images/15.png">
+<meta property="og:image" content="http://allennic.github.io/images/16.png">
+<meta property="og:image" content="http://allennic.github.io/images/17.png">
+<meta property="og:image" content="http://allennic.github.io/images/18.png">
+<meta property="og:updated_time" content="2016-10-19T05:43:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen for Hacking">
+<meta name="twitter:title" content="codeigniter用redis操作session">
+<meta name="twitter:description" content="依赖安装
+predis
+phpredis
+redis－server
+
+
+ci中使用predis
+导入
+index.php改写
+在controller使用
+
+
+具体小项目实战
+为啥用redis
+cookie&amp;amp;&amp;amp;session黑人问号？
+php.ini配置和ci下config.php配置
+php从浏览器取cookie
+
+
+
+
+依赖安装
+
+predis项目地址:predisclone下">
+<meta name="twitter:image" content="http://allennic.github.io/images/11.png">
 
 
 
@@ -110,10 +192,10 @@
 
 
 
-  <link rel="canonical" href="http://allennic.github.io/"/>
+  <link rel="canonical" href="http://allennic.github.io/2016/09/30/ci-md/"/>
 
 
-  <title> Allen for Hacking </title>
+  <title> codeigniter用redis操作session | Allen for Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -134,9 +216,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -215,9 +295,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -237,139 +317,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/10/09/hooks-md/" itemprop="url">
-                  hooks验证用户权限
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-09T17:05:00+08:00" content="2016-10-09">
-              2016-10-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="#hooks">hooks</a></p>
-<ul>
-<li><a href="#hooks1">啥是hooks</a></li>
-<li><a href="#hooks2">why hooks</a></li>
-<li><a href="#hooks3">ci中使用hooks</a></li>
-</ul>
-</li>
-<li><p><a href="#hooks4">demo</a></p>
-<ul>
-<li><a href="#1">session验证和auth验证</a></li>
-<li><a href="#2"></a></li>
-<li><a href="#3">在controller使用</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="hooks">hooks</h2>
-
-<h3 id="hooks1">啥是hooks</h3>
-
-<p>可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考<a href="http://codeigniter.org.cn/user_guide/general/hooks.html" target="_blank" rel="external">挂钩点列表</a></p>
-<h3 id="hooks2">why hooks</h3>
-
-<p>对于这个验证，其实可以重新写一个核心类，所有的controller都继承这个核心类，也可实现。为了认识hooks这东西就选择用hooks。</p>
-<h3 id="hooks3">ci中使用hooks</h3>
-
-<p>详见<a href="http://codeigniter.org.cn/forums/thread-10877-1-1.html" target="_blank" rel="external">这里</a></p>
-<h2 id="hooks">demo</h2>
-
-<h3 id="hooks1">session验证和auth验证</h3>
-
-<p>首先说明session验证是确定是否存在这个会话，auth是获取具体用户的资料（username等），auth是session生成时，我们自己给每个用户设置的标识，也发送给客户端作为cookie贮存（这样做的好处是通过这个cookie标识，才知道用户是哪个id，方便也容易取客户的数据）。</p>
-<p>然后就是在hooks写个方法。</p>
-<p><img src="images/hooks.png" alt=""></p>
-<p>就像没用mvc之前，用户登录前写个函数拦截在前面。hooks其实在我看来就是监视某个用户行为，触发拦截处理。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/30/ci-md/" itemprop="url">
-                  codeigniter用redis操作session
-                </a>
+                codeigniter用redis操作session
               
             
           </h1>
@@ -428,9 +376,7 @@
       
 
       
-        
-          
-            <ul>
+        <ul>
 <li><a href="#yilai">依赖安装</a><ul>
 <li><a href="#predis">predis</a></li>
 <li><a href="#phpredis">phpredis</a></li>
@@ -504,36 +450,59 @@
 <p>if($exi_session == 1)<br>{<br>    //执行相关业务<br>}</p>
 <p>总结，多想多实践，实践出真知</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/09/hooks-md/" rel="prev" title="hooks验证用户权限">
+                hooks验证用户权限 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -541,6 +510,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -560,8 +533,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -615,6 +597,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#yilai"><span class="nav-number">1.</span> <span class="nav-text">依赖安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#predis"><span class="nav-number">1.1.</span> <span class="nav-text">predis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#phpredis"><span class="nav-number">1.2.</span> <span class="nav-text">phpredis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis－server"><span class="nav-number">1.3.</span> <span class="nav-text">redis－server</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">2.</span> <span class="nav-text">ci中使用predis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">2.1.</span> <span class="nav-text">导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.2.</span> <span class="nav-text">index.php改写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">2.3.</span> <span class="nav-text">在controller使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31"><span class="nav-number">3.</span> <span class="nav-text">具体小项目实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#32"><span class="nav-number">3.1.</span> <span class="nav-text">为啥用redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33"><span class="nav-number">3.2.</span> <span class="nav-text">cookie&&session黑人问号？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34"><span class="nav-number">3.3.</span> <span class="nav-text">php.ini配置和ci下config.php配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#35"><span class="nav-number">3.4.</span> <span class="nav-text">php从浏览器取cookie</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -711,6 +704,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
