@@ -84,87 +84,67 @@
 
 
 
-<meta name="description" content="hooks
-
-啥是hooks
-why hooks
-ci中使用hooks
-
-
-demo
-
-session验证和auth验证
-
-在controller使用
+<meta name="description" content="axios
+使用
+与$.ajax的比较
 
 
 
 
-hooks
+axios
+使用
 
-啥是hooks
+直接加入cdn：
+&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+与$.ajax的比较
 
-可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
-why hooks
 
-对于这个验证，其实可以重新写一">
+
+其实都是大同小异">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hooks验证用户权限">
-<meta property="og:url" content="http://allennic.top/2016/10/09/hooks-md/index.html">
+<meta property="og:title" content="项目启用axios，拥抱Promise">
+<meta property="og:url" content="http://allennic.top/2016/11/07/axios/index.html">
 <meta property="og:site_name" content="Allen for Hacking">
-<meta property="og:description" content="hooks
-
-啥是hooks
-why hooks
-ci中使用hooks
-
-
-demo
-
-session验证和auth验证
-
-在controller使用
+<meta property="og:description" content="axios
+使用
+与$.ajax的比较
 
 
 
 
-hooks
+axios
+使用
 
-啥是hooks
+直接加入cdn：
+&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+与$.ajax的比较
 
-可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
-why hooks
 
-对于这个验证，其实可以重新写一">
-<meta property="og:image" content="http://allennic.top/images/hooks.png">
-<meta property="og:updated_time" content="2016-10-09T10:45:10.000Z">
+
+其实都是大同小异">
+<meta property="og:image" content="http://allennic.top/images/axios1.png">
+<meta property="og:image" content="http://allennic.top/images/axios2.png">
+<meta property="og:updated_time" content="2016-11-07T10:20:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hooks验证用户权限">
-<meta name="twitter:description" content="hooks
-
-啥是hooks
-why hooks
-ci中使用hooks
-
-
-demo
-
-session验证和auth验证
-
-在controller使用
+<meta name="twitter:title" content="项目启用axios，拥抱Promise">
+<meta name="twitter:description" content="axios
+使用
+与$.ajax的比较
 
 
 
 
-hooks
+axios
+使用
 
-啥是hooks
+直接加入cdn：
+&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+与$.ajax的比较
 
-可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考挂钩点列表
-why hooks
 
-对于这个验证，其实可以重新写一">
-<meta name="twitter:image" content="http://allennic.top/images/hooks.png">
+
+其实都是大同小异">
+<meta name="twitter:image" content="http://allennic.top/images/axios1.png">
 
 
 
@@ -185,10 +165,10 @@ why hooks
 
 
 
-  <link rel="canonical" href="http://allennic.top/2016/10/09/hooks-md/"/>
+  <link rel="canonical" href="http://allennic.top/2016/11/07/axios/"/>
 
 
-  <title> hooks验证用户权限 | Allen for Hacking </title>
+  <title> 项目启用axios，拥抱Promise | Allen for Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -318,7 +298,7 @@ why hooks
             
             
               
-                hooks验证用户权限
+                项目启用axios，拥抱Promise
               
             
           </h1>
@@ -330,11 +310,30 @@ why hooks
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-09T17:05:00+08:00" content="2016-10-09">
-              2016-10-09
+            <time itemprop="dateCreated" datetime="2016-11-07T16:52:33+08:00" content="2016-11-07">
+              2016-11-07
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -359,41 +358,23 @@ why hooks
 
       
         <ul>
-<li><p><a href="#hooks">hooks</a></p>
-<ul>
-<li><a href="#hooks1">啥是hooks</a></li>
-<li><a href="#hooks2">why hooks</a></li>
-<li><a href="#hooks3">ci中使用hooks</a></li>
-</ul>
-</li>
-<li><p><a href="#hooks4">demo</a></p>
-<ul>
-<li><a href="#1">session验证和auth验证</a></li>
-<li><a href="#2"></a></li>
-<li><a href="#3">在controller使用</a></li>
+<li><a href="#1">axios</a><ul>
+<li><a href="#11">使用</a></li>
+<li><a href="#12">与$.ajax的比较</a></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="hooks">hooks</h2>
+<p></p><h2 id="1">axios</h2><p></p>
+<h3 id="11">使用</h3>
 
-<h3 id="hooks1">啥是hooks</h3>
+<p>直接加入cdn：</p>
+<p><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<h3 id="12">与$.ajax的比较</h3>
 
-<p>可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考<a href="http://codeigniter.org.cn/user_guide/general/hooks.html" target="_blank" rel="external">挂钩点列表</a></p>
-<h3 id="hooks2">why hooks</h3>
-
-<p>对于这个验证，其实可以重新写一个核心类，所有的controller都继承这个核心类，也可实现。为了认识hooks这东西就选择用hooks。</p>
-<h3 id="hooks3">ci中使用hooks</h3>
-
-<p>详见<a href="http://codeigniter.org.cn/forums/thread-10877-1-1.html" target="_blank" rel="external">这里</a></p>
-<h2 id="hooks">demo</h2>
-
-<h3 id="hooks1">session验证和auth验证</h3>
-
-<p>首先说明session验证是确定是否存在这个会话，auth是获取具体用户的资料（username等），auth是session生成时，我们自己给每个用户设置的标识，也发送给客户端作为cookie贮存（这样做的好处是通过这个cookie标识，才知道用户是哪个id，方便也容易取客户的数据）。</p>
-<p>然后就是在hooks写个方法。</p>
-<p><img src="images/hooks.png" alt=""></p>
-<p>就像没用mvc之前，用户登录前写个函数拦截在前面。hooks其实在我看来就是监视某个用户行为，触发拦截处理。</p>
+<p><img src="images/axios1.png" alt=""></p>
+<p><img src="images/axios2.png" alt=""></p>
+<p>其实都是大同小异</p>
 
       
     </div>
@@ -425,17 +406,13 @@ why hooks
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/30/ci-md/" rel="next" title="codeigniter用redis操作session">
-                <i class="fa fa-chevron-left"></i> codeigniter用redis操作session
+              <a href="/2016/11/04/ajax/" rel="next" title="浅谈ajax的request以及response">
+                <i class="fa fa-chevron-left"></i> 浅谈ajax的request以及response
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/04/ajax/" rel="prev" title="浅谈ajax的request以及response">
-                浅谈ajax的request以及response <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -553,7 +530,7 @@ why hooks
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hooks"><span class="nav-number">1.</span> <span class="nav-text">hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks1"><span class="nav-number">1.1.</span> <span class="nav-text">啥是hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks2"><span class="nav-number">1.2.</span> <span class="nav-text">why hooks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks3"><span class="nav-number">1.3.</span> <span class="nav-text">ci中使用hooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hooks"><span class="nav-number">2.</span> <span class="nav-text">demo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hooks1"><span class="nav-number">2.1.</span> <span class="nav-text">session验证和auth验证</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">axios</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12"><span class="nav-number">1.2.</span> <span class="nav-text">与$.ajax的比较</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
