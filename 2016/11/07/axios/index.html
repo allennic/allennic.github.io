@@ -93,10 +93,11 @@ bug
 
 
 axios
+
 使用
 
 直接加入cdn：
-src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;1234567891011121314```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目启用axios，拥抱Promise">
 <meta property="og:url" content="http://allennic.top/2016/11/07/axios/index.html">
@@ -110,11 +111,12 @@ bug
 
 
 axios
+
 使用
 
 直接加入cdn：
-src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
-<meta property="og:updated_time" content="2016-11-07T15:17:56.000Z">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;1234567891011121314```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images">
+<meta property="og:updated_time" content="2016-11-07T15:21:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目启用axios，拥抱Promise">
 <meta name="twitter:description" content="axios
@@ -126,10 +128,11 @@ bug
 
 
 axios
+
 使用
 
 直接加入cdn：
-src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;1234567891011121314```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images">
 
 
 
@@ -351,11 +354,12 @@ src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112
 </li>
 </ul>
 <hr>
-<p></p><h2 id="1">axios</h2><p></p>
+<h2 id="1">axios</h2>
+
 <h3 id="11">使用</h3>
 
 <p>直接加入cdn：</p>
-<figure class="highlight plain"><figcaption><span>src="https://unpkg.com/axios/dist/axios.min.js"></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&lt;h3 id=&quot;12&quot;&gt;与$.ajax的比较&lt;/h3&gt;</div><div class="line"></div><div class="line">![](images/axios1.png)</div><div class="line"></div><div class="line">![](images/axios2.png)</div><div class="line"></div><div class="line">&lt;h3 id=&quot;13&quot;&gt;bug&lt;/h3&gt;</div><div class="line"></div><div class="line">ci与axios使用会有报个致命的bug，是php5.6引起的。</div><div class="line">具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用```json_decode(trim(file_get_contents(&apos;php://input&apos;)), true);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>src="https://unpkg.com/axios/dist/axios.min.js"></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&lt;h3 id=&quot;12&quot;&gt;与$.ajax的比较&lt;/h3&gt;</div><div class="line"></div><div class="line">![](images/axios1.png)</div><div class="line"></div><div class="line">![](images/axios2.png)</div><div class="line"></div><div class="line">&lt;h3 id=&quot;13&quot;&gt;bug&lt;/h3&gt;</div><div class="line"></div><div class="line">ci与axios使用会有报个致命的bug，是php5.6引起的。</div><div class="line">具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用</div><div class="line"></div><div class="line">```json_decode(trim(file_get_contents(&apos;php://input&apos;)), true);</div></pre></td></tr></table></figure>
 <p>虽然取到值了，但是返回给前端的json却带有warning，无法用js取到返回的指定的值。</p>
 
       
