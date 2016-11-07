@@ -87,6 +87,7 @@
 <meta name="description" content="axios
 使用
 与$.ajax的比较
+bug
 
 
 
@@ -95,12 +96,7 @@ axios
 使用
 
 直接加入cdn：
-&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-与$.ajax的比较
-
-
-
-其实都是大同小异">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目启用axios，拥抱Promise">
 <meta property="og:url" content="http://allennic.top/2016/11/07/axios/index.html">
@@ -108,6 +104,7 @@ axios
 <meta property="og:description" content="axios
 使用
 与$.ajax的比较
+bug
 
 
 
@@ -116,20 +113,14 @@ axios
 使用
 
 直接加入cdn：
-&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-与$.ajax的比较
-
-
-
-其实都是大同小异">
-<meta property="og:image" content="http://allennic.top/images/axios1.png">
-<meta property="og:image" content="http://allennic.top/images/axios2.png">
-<meta property="og:updated_time" content="2016-11-07T10:20:57.000Z">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
+<meta property="og:updated_time" content="2016-11-07T15:17:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目启用axios，拥抱Promise">
 <meta name="twitter:description" content="axios
 使用
 与$.ajax的比较
+bug
 
 
 
@@ -138,13 +129,7 @@ axios
 使用
 
 直接加入cdn：
-&amp;lt;script src=&amp;quot;https://unpkg.com/axios/dist/axios.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-与$.ajax的比较
-
-
-
-其实都是大同小异">
-<meta name="twitter:image" content="http://allennic.top/images/axios1.png">
+src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&amp;gt;123456789101112```&amp;lt;h3 id=&amp;quot;12&amp;quot;&amp;gt;与$.ajax的比较&amp;lt;/h3&amp;gt;![](images/axios1.png)![](images/axio">
 
 
 
@@ -361,6 +346,7 @@ axios
 <li><a href="#1">axios</a><ul>
 <li><a href="#11">使用</a></li>
 <li><a href="#12">与$.ajax的比较</a></li>
+<li><a href="#13">bug</a></li>
 </ul>
 </li>
 </ul>
@@ -369,12 +355,8 @@ axios
 <h3 id="11">使用</h3>
 
 <p>直接加入cdn：</p>
-<p><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</code></p>
-<h3 id="12">与$.ajax的比较</h3>
-
-<p><img src="images/axios1.png" alt=""></p>
-<p><img src="images/axios2.png" alt=""></p>
-<p>其实都是大同小异</p>
+<figure class="highlight plain"><figcaption><span>src="https://unpkg.com/axios/dist/axios.min.js"></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&lt;h3 id=&quot;12&quot;&gt;与$.ajax的比较&lt;/h3&gt;</div><div class="line"></div><div class="line">![](images/axios1.png)</div><div class="line"></div><div class="line">![](images/axios2.png)</div><div class="line"></div><div class="line">&lt;h3 id=&quot;13&quot;&gt;bug&lt;/h3&gt;</div><div class="line"></div><div class="line">ci与axios使用会有报个致命的bug，是php5.6引起的。</div><div class="line">具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用```json_decode(trim(file_get_contents(&apos;php://input&apos;)), true);</div></pre></td></tr></table></figure>
+<p>虽然取到值了，但是返回给前端的json却带有warning，无法用js取到返回的指定的值。</p>
 
       
     </div>
@@ -530,7 +512,7 @@ axios
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">axios</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12"><span class="nav-number">1.2.</span> <span class="nav-text">与$.ajax的比较</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">axios</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
