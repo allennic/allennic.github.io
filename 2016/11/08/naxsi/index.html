@@ -137,7 +137,7 @@ naxsi屏蔽神兵利器sqlmap
 <meta property="og:image" content="http://allennic.top/images/haha.png">
 <meta property="og:image" content="http://allennic.top/images/naxsi1.png">
 <meta property="og:image" content="http://allennic.top/images/naxsi2.png">
-<meta property="og:updated_time" content="2016-11-08T14:02:26.000Z">
+<meta property="og:updated_time" content="2016-11-08T14:18:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA启用nginx防火墙模块-naxsi">
 <meta name="twitter:description" content="环境配置
@@ -433,7 +433,7 @@ naxsi屏蔽神兵利器sqlmap
 <h2 id="4">naxsi屏蔽神兵利器sqlmap</h2>
 
 <p>首先，关闭防火墙（在ngnix.conf禁用前面添加的rules,重启nginx）</p>
-<p><code>./sqlmap.py -u&quot;http://localhost:8900/DVWA-1.9/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; -cookie=&quot;security=low;PHPSESSID=m2ur19k10komlqhno1b0676of4&quot; --dbs</code></p>
+<p><code>./sqlmap.py -u&quot;http://localhost:8900/DVWA-1.9/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=m2ur19k10komlqhno1b0676of4&quot; --dbs</code></p>
 <p>如图</p>
 <p><img src="images/naxsi1.png" alt=""></p>
 <p>再次，开启防火墙，同样是上面语句（记得把sqlmap纪录的output删除，不然会得到跟上面一样的结果）</p>
