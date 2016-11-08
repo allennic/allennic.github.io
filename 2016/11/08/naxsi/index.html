@@ -136,7 +136,7 @@ naxsi屏蔽神兵利器sqlmap
 对于白帽来说，配置环境是再正常不过的事了，这里使用的环境mysql5.7.15,nginx1.8.0,php5.6.25当时下了php5.6.27,出现了跟php7一样的问题，啥配置都正确，就是login.php一直显示空白，goog">
 <meta property="og:image" content="http://allennic.top/images/naxsi1.png">
 <meta property="og:image" content="http://allennic.top/images/naxsi2.png">
-<meta property="og:updated_time" content="2016-11-08T13:51:24.000Z">
+<meta property="og:updated_time" content="2016-11-08T13:56:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DVWA启用nginx防火墙模块-naxsi">
 <meta name="twitter:description" content="环境配置
@@ -442,7 +442,7 @@ naxsi屏蔽神兵利器sqlmap
 <p>提示有WAF并且parameter ‘id’ does not seem to be injectable</p>
 <h2 id="5">后记</h2>
 
-<p>一、搭建环境真的是各种问题，刚开始login.php以为事nginx无法解析php，试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
+<p>一、搭建环境真的是各种问题，刚开始login.php以为是nginx无法解析php，试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
 <p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptabls策略。希望自己都能过上几遍。。。</p>
 <p>三、类似modsecurity这种WAF其实也可用sqlmap中强大的tamper绕过，今天重拾sqlmap发现多了好多东西。。</p>
 
