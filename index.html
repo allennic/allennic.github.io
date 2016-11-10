@@ -246,6 +246,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/10/online/" itemprop="url">
+                  redis统计实时在线人数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-10T15:49:53+08:00" content="2016-11-10">
+              2016-11-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="#1">SADD</a></li>
+<li><a href="#2">SCARD</a></li>
+<li><a href="#3">SREM</a></li>
+</ul>
+<hr>
+<h2 id="1">SADD</h2>
+
+<p>我们在密码验证成功页面添加（$user_id是密码验证正确后，从数据库取到redis）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&lt;h2 id=&quot;2&quot;&gt;SCARD&lt;/h2&gt;</div><div class="line"></div><div class="line">在个人主页显示在线人数</div><div class="line">```$redis-&gt;scard(&quot;online_users&quot;);</div></pre></td></tr></table></figure></p>
+<p>严重参考<a href="http://blog.huangz.me/diary/2016/redis-count-online-users.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">huangz</a></p>
+<h2 id="3">SREM</h2>
+
+<p>在退出页面添加</p>
+<pre><code class="$redis-&gt;srem(&quot;online_users&quot;,$user_id);">
+</code></pre>
+<p>如果不删除会导致在线人数一直呈上升趋势。</p>
+<p>后记:</p>
+<p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，导致不能正确统计在线人数。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/08/naxsi/" itemprop="url">
                   DVWA启用nginx防火墙模块-naxsi
                 </a>
@@ -1042,7 +1172,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
