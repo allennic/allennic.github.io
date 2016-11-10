@@ -144,7 +144,7 @@ predis项目地址:predisclone下">
 <meta property="og:image" content="http://allennic.top/images/16.png">
 <meta property="og:image" content="http://allennic.top/images/17.png">
 <meta property="og:image" content="http://allennic.top/images/18.png">
-<meta property="og:updated_time" content="2016-10-19T05:43:59.000Z">
+<meta property="og:updated_time" content="2016-11-10T02:17:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="codeigniter用redis操作session">
 <meta name="twitter:description" content="依赖安装
@@ -434,7 +434,7 @@ predis项目地址:predisclone下">
 <p>php.ini配置</p>
 <p>session.save_handler = redis</p>
 <p>session.save_path = tcp://127.0.0.1:6379?database=1</p>
-<p>切记把php.ini中session.auto_start设置为零。血与泪的教训，测试程序时莫名产生这个PHPSESSID。<br>程序逻辑压根就没严惩正确也产生，耽误了我的人生你知道么！！！</p>
+<p>切记把php.ini中session.auto_start设置为零。血与泪的教训，测试程序时莫名产生这个PHPSESSID。<br>程序逻辑压根就没验证正确也产生，耽误了我的人生你知道么！！！</p>
 <p>还有可以试试改变下database的值（默认为0，有0-15的值），看看session到底存在哪，使用ci的配置还是php.ini的配置。坑已经留给你们，跳不跳不关我事。</p>
 <p></p><h3 id="35">php从浏览器取cookie</h3><br>当时天真以为js的document.cookie取，你是在ci的controller取的大哥，你取给我看看！后面理清思路，cookie的存在是保存在浏览器，并且会记录从哪个网站产生的。所以，我们只要在那个网站上浏览任意网页都会有session_id存在（这个session_id是永久存在），至于服务器端session会有个session.cookie_lifetime的生命周期，看你项目大小设定。<p></p>
 <p>说了这么多就是$_COOKIE取的，会得到一个关联数组，如图<br><img src="images/15.png" alt=""></p>
