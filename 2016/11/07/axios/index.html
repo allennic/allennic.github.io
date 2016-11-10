@@ -132,7 +132,7 @@ bug
 ci与axios使用会触发一个致命的bug，是php5.6引起的。具体为ci中$this">
 <meta property="og:image" content="http://allennic.top/images/axios1.png">
 <meta property="og:image" content="http://allennic.top/images/axios2.png">
-<meta property="og:updated_time" content="2016-11-10T02:06:42.000Z">
+<meta property="og:updated_time" content="2016-11-10T02:21:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目启用axios，拥抱Promise">
 <meta name="twitter:description" content="axios
@@ -393,7 +393,7 @@ ci与axios使用会触发一个致命的bug，是php5.6引起的。具体为ci�
 <p>ci与axios使用会触发一个致命的<a href="https://bugs.php.net/bug.php?id=66763" target="_blank" rel="external">bug</a>，是php5.6引起的。<br>具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用</p>
 <p>json_decode(trim(file_get_contents(‘php://input’)), true);</p>
 <p>虽然取到值了，但是返回给前端的json却带有warning，无法用js取到返回的指定的值。</p>
-<p>补上面留下的坑，可以把warning去掉233。。</p>
+<p>补上面留下的坑，可以把warning去掉233。。js可以抓取指定的值</p>
 <p>首先：<br>打开php.ini文件</p>
 <p>添加这个配置:always_populate_raw_post_data = -1</p>
 <p>或者添加这个:enable_post_data_reading = On(官方推荐这个)</p>
