@@ -317,13 +317,14 @@
 <hr>
 <h2 id="1">SADD</h2>
 
-<p>我们在密码验证成功页面添加（$user_id是密码验证正确后，从数据库取到redis）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line"></div><div class="line">&lt;h2 id=&quot;2&quot;&gt;SCARD&lt;/h2&gt;</div><div class="line"></div><div class="line">在个人主页显示在线人数</div><div class="line">```$redis-&gt;scard(&quot;online_users&quot;);</div></pre></td></tr></table></figure></p>
+<p>我们在密码验证成功页面添加（$user_id是密码验证正确后，从数据库取到redis）<br>$redis-&gt;sadd(“online_users”,$user_id);</p>
+<h2 id="2">SCARD</h2>
+
+<p>在个人主页显示在线人数<br>$redis-&gt;scard(“online_users”);</p>
 <p>严重参考<a href="http://blog.huangz.me/diary/2016/redis-count-online-users.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">huangz</a></p>
 <h2 id="3">SREM</h2>
 
-<p>在退出页面添加</p>
-<pre><code class="$redis-&gt;srem(&quot;online_users&quot;,$user_id);">
-</code></pre>
+<p>在退出页面添加<br>$redis-&gt;srem(“online_users”,$user_id);</p>
 <p>如果不删除会导致在线人数一直呈上升趋势。</p>
 <p>后记:</p>
 <p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，导致不能正确统计在线人数。</p>
