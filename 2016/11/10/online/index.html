@@ -118,7 +118,7 @@ SCARD
 SREM
 
 在退出页面添加$redis-&amp;gt;sre">
-<meta property="og:updated_time" content="2016-11-10T08:15:44.000Z">
+<meta property="og:updated_time" content="2016-11-10T08:17:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis统计实时在线人数">
 <meta name="twitter:description" content="SADD
@@ -366,7 +366,7 @@ SREM
 <p>在退出页面添加<br>$redis-&gt;srem(“online_users”,$user_id);</p>
 <p>如果不删除会导致在线人数一直呈上升趋势。</p>
 <p>后记:</p>
-<p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，导致不能正确统计在线人数。</p>
+<p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，所以不能正确统计在线人数。</p>
 
       
     </div>
