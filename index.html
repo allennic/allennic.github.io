@@ -375,8 +375,8 @@
 <p>提示有WAF并且parameter ‘id’ does not seem to be injectable</p>
 <h2 id="5">后记</h2>
 
-<p>一、搭建环境真的是各种问题，刚开始login.php以为是nginx无法解析php，试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
-<p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptabls策略。希望自己都能过上几遍。。。</p>
+<p>一、搭建环境真的是各种问题，刚开始login.php空白以为是nginx无法解析php（后面翻文档，无法解析是页面直接输出php代码），试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
+<p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptables策略。希望自己都能过上几遍。。。</p>
 <p>三、类似modsecurity这种WAF其实也可用sqlmap中强大的tamper绕过，今天重拾sqlmap发现多了好多东西。。</p>
 
           
