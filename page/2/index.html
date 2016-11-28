@@ -250,6 +250,187 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/08/naxsi/" itemprop="url">
+                  DVWA启用nginx防火墙模块-naxsi
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T15:34:03+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p><a href="#1">环境配置</a></p>
+<ul>
+<li><a href="#10">前言</a></li>
+<li><a href="#11">mysql</a></li>
+<li><a href="#12">nginx</a></li>
+<li><a href="#13">php</a></li>
+</ul>
+</li>
+<li><p><a href="#2">在nginx配置naxsi</a> </p>
+</li>
+<li><p><a href="#3">演示</a></p>
+</li>
+<li><p><a href="#4">naxsi屏蔽神兵利器sqlmap</a></p>
+</li>
+<li><p><a href="#5">后记</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="1">环境配置</h2>
+
+<h3 id="10">前言</h3>
+
+<p>对于白帽来说，配置环境是再正常不过的事了，这里使用的环境mysql5.7.15,nginx1.8.0,php5.6.25<br>当时下了php5.6.27,出现了跟php7一样的问题，啥配置都正确，就是login.php一直显示空白，google了n久，换了跟本地一样的php5.6.25，直接跑起来。。</p>
+<h3 id="11">mysql</h3>
+
+<p><a href="https://typecodes.com/web/centos7compilemysql.html" target="_blank" rel="external">参考</a></p>
+<h3 id="12">nginx</h3>
+
+<p><a href="http://blog.aboutc.net/nginx/62/compile-and-install-nginx-on-linux" target="_blank" rel="external">参考</a></p>
+<p>记住要把naxsi克隆到本地，编译时增加参数</p>
+<p>–add-module=../naxsi/naxsi_src/ \</p>
+<h3 id="13">php</h3>
+
+<p><a href="http://blog.aboutc.net/linux/65/compile-and-install-php-on-linux" target="_blank" rel="external">参考</a></p>
+<h2 id="2">在nginx配置naxsi</h2>
+
+<p>一、命令行复制naxsi_config中的naxsi_core.rules到nginx的etc配置目录</p>
+<p>二、在nginx的etc配置目录新建一个naxsi.rules</p>
+<p>代码如下</p>
+<p>SecRulesEnabled;</p>
+<p>DeniedUrl “/RequestDenied”;</p>
+<p>CheckRule “$SQL &gt;= 8” BLOCK;</p>
+<p>CheckRule “$RFI &gt;= 8” BLOCK;</p>
+<p>CheckRule “$TRAVERSAL &gt;= 4” BLOCK;</p>
+<p>CheckRule “$EVADE &gt;= 4” BLOCK;</p>
+<p>CheckRule “$XSS &gt;= 8” BLOCK;</p>
+<p>三、</p>
+<p>在http{}中设置include ../naxsi_core.rules;</p>
+<p>在server{}中设置 include ../naxsi.rules;</p>
+<h2 id="3">演示</h2>
+
+<p><img src="images/haha.png" alt=""></p>
+<p><a href="https://www.youtube.com/embed/sJoPRvhTYW4" target="_blank" rel="external">自备梯子</a>。。</p>
+<h2 id="4">naxsi屏蔽神兵利器sqlmap</h2>
+
+<p>首先，关闭防火墙（在ngnix.conf禁用前面添加的rules,重启nginx）</p>
+<p><code>./sqlmap.py -u&quot;http://localhost:8900/DVWA-1.9/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=m2ur19k10komlqhno1b0676of4&quot; --dbs</code></p>
+<p>如图</p>
+<p><img src="images/naxsi1.png" alt=""></p>
+<p>再次，开启防火墙，同样是上面语句（记得把sqlmap纪录的output删除，不然会得到跟上面一样的结果）</p>
+<p>如图</p>
+<p><img src="images/naxsi2.png" alt=""></p>
+<p>提示有WAF并且parameter ‘id’ does not seem to be injectable</p>
+<h2 id="5">后记</h2>
+
+<p>一、搭建环境真的是各种问题，刚开始login.php空白以为是nginx无法解析php（后面翻文档，无法解析是页面直接输出php代码），试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
+<p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptables策略。希望自己都能过上几遍。。。</p>
+<p>三、类似modsecurity这种WAF其实也可用sqlmap中强大的tamper绕过，今天重拾sqlmap发现多了好多东西。。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/07/axios/" itemprop="url">
                   项目启用axios，拥抱Promise
                 </a>
@@ -371,279 +552,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/04/ajax/" itemprop="url">
-                  浅谈ajax的request以及response
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T21:18:37+08:00" content="2016-11-04">
-              2016-11-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="#1">request</a></p>
-<ul>
-<li><a href="#11">发起</a></li>
-</ul>
-</li>
-<li><p><a href="#2">response</a></p>
-<ul>
-<li><a href="#21">接收</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="1">request</h2>
-
-<h3 id="11">发起</h3><br>我们直接引入jQuery库来发起，也有研究过promise，fetch，async等原生写法。可能缘分没到，还没用起来233。。<br><br><img src="images/a1.png" alt=""><br><br>如图所示，完成一个简单的发起，这里要考验的是data是以什么类型发起的，如图我就是以单个key=&gt;value形式发起。<br><br>假如data要以要以数组的形式发起，可以这样，把整个表单的值提交<br><br><img src="images/a2.png" alt=""><br><br><br>假如data只提交checkbox的索引值，可以这样，把选取到的值放入sList这个变量中<br><br><img src="images/a3.png" alt=""><br><br>总之，提交的姿势很多，之后在各框架controller中做处理<br><br><br><h2 id="2">response</h2><br><br><h3 id="21">接收</h3>
-
-<p>当data提交成功后，我们在controller中也做了相应的处理，这时就要返回一个信息给ajax的response，让其在view页面做相应的处理。</p>
-<p>以ci为例，当时直接在ci中的controller做sql执行完的逻辑判断，愣是没有输出任何内容到view中。后面试试在model中判断然后返回一个数组。成功了居然！！！</p>
-<p>model中</p>
-<p><img src="images/a4.png" alt=""></p>
-<p>controller中接受并且返回到view，这里注意一定要以echo形式输出，不能用return</p>
-<p><img src="images/a5.png" alt=""></p>
-<p>view接受页面，要说接收这样的对象数组，不要用JSON对象的任何方法，以为其压根就不是json文件，血与泪的教训，当时一直在试取key或者value的值，什么$.each、for..in遍历就是取不到！！！后面直接alert(obj[1])直接出来！！！此乃深坑</p>
-<p><img src="images/a6.png" alt=""></p>
-<p>成功页面</p>
-<p><img src="images/a7.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/09/hooks-md/" itemprop="url">
-                  hooks验证用户权限
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-09T17:05:00+08:00" content="2016-10-09">
-              2016-10-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="#hooks">hooks</a></p>
-<ul>
-<li><a href="#hooks1">啥是hooks</a></li>
-<li><a href="#hooks2">why hooks</a></li>
-<li><a href="#hooks3">ci中使用hooks</a></li>
-</ul>
-</li>
-<li><p><a href="#hooks4">demo</a></p>
-<ul>
-<li><a href="#1">session验证和auth验证</a></li>
-<li><a href="#2"></a></li>
-<li><a href="#3">在controller使用</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="hooks">hooks</h2>
-
-<h3 id="hooks1">啥是hooks</h3>
-
-<p>可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考<a href="http://codeigniter.org.cn/user_guide/general/hooks.html" target="_blank" rel="external">挂钩点列表</a></p>
-<h3 id="hooks2">why hooks</h3>
-
-<p>对于这个验证，其实可以重新写一个核心类，所有的controller都继承这个核心类，也可实现。为了认识hooks这东西就选择用hooks。</p>
-<h3 id="hooks3">ci中使用hooks</h3>
-
-<p>详见<a href="http://codeigniter.org.cn/forums/thread-10877-1-1.html" target="_blank" rel="external">这里</a></p>
-<h2 id="hooks">demo</h2>
-
-<h3 id="hooks1">session验证和auth验证</h3>
-
-<p>首先说明session验证是确定是否存在这个会话，auth是获取具体用户的资料（username等），auth是session生成时，我们自己给每个用户设置的标识，也发送给客户端作为cookie贮存（这样做的好处是通过这个cookie标识，才知道用户是哪个id，方便也容易取客户的数据）。</p>
-<p>然后就是在hooks写个方法。</p>
-<p><img src="images/hooks.png" alt=""></p>
-<p>就像没用mvc之前，用户登录前写个函数拦截在前面。hooks其实在我看来就是监视某个用户行为，触发拦截处理。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
