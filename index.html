@@ -250,6 +250,149 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/30/johnhax-md/" itemprop="url">
+                  贺老师知乎live的面试题小实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-30T15:25:07+08:00" content="2016-12-30">
+              2016-12-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="#1">小热身题</a></li>
+</ul>
+<ul>
+<li><a href="#2">反思</a></li>
+</ul>
+<hr>
+<h2 id="1">小热身题</h2>
+
+<p>题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？</p>
+<p>分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。</p>
+<p>首先：老师介绍有四个方法取出所有标签</p>
+<p>一、通过document.getElementsByTagName(‘*’);生成的数据类型为HTMLCollection</p>
+<p><img src="images/hax1.png" alt=""></p>
+<p>二、通过document.querySelectorAll(‘*’);生成的数据类型为NodeList</p>
+<p><img src="images/hax2.png" alt=""></p>
+<p>三、通过document.all;生成数据类型为HTMLCollection</p>
+<p><img src="images/hax3.png" alt=""></p>
+<p>四、通过浏览器的api，生成数据类型直接为Array</p>
+<p><img src="images/hax4.png" alt=""></p>
+<p>其次：就是把HTMLCollection等转换为Array</p>
+<p>万金油方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.slice.call();</div></pre></td></tr></table></figure>
+<p>最后：将数组去重</p>
+<p>讨论组大神黄玄给了个牛逼的答案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Set</span>($$(<span class="string">'*'</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> e.tagName)).size;</div></pre></td></tr></table></figure>
+<p>自己的答案</p>
+<p><img src="images/hax5.png" alt=""></p>
+<h2 id="2">反思</h2>
+
+<p>确实如同老师所讲，自己对js原生api、es6相比以前也有了更深的认识。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/28/cors/" itemprop="url">
                   前后端分离玩法之CORS
                 </a>
@@ -371,137 +514,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/10/online/" itemprop="url">
-                  redis统计实时在线人数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-10T15:49:53+08:00" content="2016-11-10">
-              2016-11-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="#1">SADD</a></li>
-<li><a href="#2">SCARD</a></li>
-<li><a href="#3">SREM</a></li>
-</ul>
-<hr>
-<h2 id="1">SADD</h2>
-
-<p>我们在密码验证成功页面添加（$user_id是密码验证正确后，从数据库取到redis）<br>$redis-&gt;sadd(“online_users”,$user_id);</p>
-<h2 id="2">SCARD</h2>
-
-<p>在个人主页显示在线人数<br>$redis-&gt;scard(“online_users”);</p>
-<p>严重参考<a href="http://blog.huangz.me/diary/2016/redis-count-online-users.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">huangz</a></p>
-<h2 id="3">SREM</h2>
-
-<p>在退出页面添加<br>$redis-&gt;srem(“online_users”,$user_id);</p>
-<p>如果不删除会导致在线人数一直呈上升趋势。</p>
-<p>后记:</p>
-<p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，所以不能正确统计在线人数。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -547,7 +559,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

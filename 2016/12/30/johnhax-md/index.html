@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术," />
 
 
 
@@ -84,12 +84,55 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allen for Hacking">
-<meta property="og:url" content="http://allennic.top/page/2/index.html">
+<meta name="description" content="小热身题
+
+
+反思
+
+
+小热身题
+
+题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？
+分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。
+首先：老师介绍有四个方法取出所有标签
+一、通过document.getElementsByTa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贺老师知乎live的面试题小实践">
+<meta property="og:url" content="http://allennic.top/2016/12/30/johnhax-md/index.html">
 <meta property="og:site_name" content="Allen for Hacking">
+<meta property="og:description" content="小热身题
+
+
+反思
+
+
+小热身题
+
+题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？
+分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。
+首先：老师介绍有四个方法取出所有标签
+一、通过document.getElementsByTa">
+<meta property="og:image" content="http://allennic.top/images/hax1.png">
+<meta property="og:image" content="http://allennic.top/images/hax2.png">
+<meta property="og:image" content="http://allennic.top/images/hax3.png">
+<meta property="og:image" content="http://allennic.top/images/hax4.png">
+<meta property="og:image" content="http://allennic.top/images/hax5.png">
+<meta property="og:updated_time" content="2016-12-30T08:39:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen for Hacking">
+<meta name="twitter:title" content="贺老师知乎live的面试题小实践">
+<meta name="twitter:description" content="小热身题
+
+
+反思
+
+
+小热身题
+
+题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？
+分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。
+首先：老师介绍有四个方法取出所有标签
+一、通过document.getElementsByTa">
+<meta name="twitter:image" content="http://allennic.top/images/hax1.png">
 
 
 
@@ -110,10 +153,10 @@
 
 
 
-  <link rel="canonical" href="http://allennic.top/page/2/"/>
+  <link rel="canonical" href="http://allennic.top/2016/12/30/johnhax-md/"/>
 
 
-  <title> Allen for Hacking </title>
+  <title> 贺老师知乎live的面试题小实践 | Allen for Hacking </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -134,9 +177,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -227,9 +268,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -249,10 +290,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/10/online/" itemprop="url">
-                  redis统计实时在线人数
-                </a>
+                贺老师知乎live的面试题小实践
               
             
           </h1>
@@ -264,8 +302,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-10T15:49:53+08:00" content="2016-11-10">
-              2016-11-10
+            <time itemprop="dateCreated" datetime="2016-12-30T15:25:07+08:00" content="2016-12-30">
+              2016-12-30
             </time>
           </span>
 
@@ -311,243 +349,91 @@
       
 
       
-        
-          
-            <ul>
-<li><a href="#1">SADD</a></li>
-<li><a href="#2">SCARD</a></li>
-<li><a href="#3">SREM</a></li>
+        <ul>
+<li><a href="#1">小热身题</a></li>
 </ul>
-<hr>
-<h2 id="1">SADD</h2>
-
-<p>我们在密码验证成功页面添加（$user_id是密码验证正确后，从数据库取到redis）<br>$redis-&gt;sadd(“online_users”,$user_id);</p>
-<h2 id="2">SCARD</h2>
-
-<p>在个人主页显示在线人数<br>$redis-&gt;scard(“online_users”);</p>
-<p>严重参考<a href="http://blog.huangz.me/diary/2016/redis-count-online-users.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">huangz</a></p>
-<h2 id="3">SREM</h2>
-
-<p>在退出页面添加<br>$redis-&gt;srem(“online_users”,$user_id);</p>
-<p>如果不删除会导致在线人数一直呈上升趋势。</p>
-<p>后记:</p>
-<p>刚开始试用zadd，但是要增加一项时间戳（上线时间），导致不能从有序集合里删除$user_id，所以不能正确统计在线人数。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/08/naxsi/" itemprop="url">
-                  DVWA启用nginx防火墙模块-naxsi
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T15:34:03+08:00" content="2016-11-08">
-              2016-11-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="#1">环境配置</a></p>
 <ul>
-<li><a href="#10">前言</a></li>
-<li><a href="#11">mysql</a></li>
-<li><a href="#12">nginx</a></li>
-<li><a href="#13">php</a></li>
-</ul>
-</li>
-<li><p><a href="#2">在nginx配置naxsi</a> </p>
-</li>
-<li><p><a href="#3">演示</a></p>
-</li>
-<li><p><a href="#4">naxsi屏蔽神兵利器sqlmap</a></p>
-</li>
-<li><p><a href="#5">后记</a></p>
-</li>
+<li><a href="#2">反思</a></li>
 </ul>
 <hr>
-<h2 id="1">环境配置</h2>
+<h2 id="1">小热身题</h2>
 
-<h3 id="10">前言</h3>
+<p>题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？</p>
+<p>分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。</p>
+<p>首先：老师介绍有四个方法取出所有标签</p>
+<p>一、通过document.getElementsByTagName(‘*’);生成的数据类型为HTMLCollection</p>
+<p><img src="images/hax1.png" alt=""></p>
+<p>二、通过document.querySelectorAll(‘*’);生成的数据类型为NodeList</p>
+<p><img src="images/hax2.png" alt=""></p>
+<p>三、通过document.all;生成数据类型为HTMLCollection</p>
+<p><img src="images/hax3.png" alt=""></p>
+<p>四、通过浏览器的api，生成数据类型直接为Array</p>
+<p><img src="images/hax4.png" alt=""></p>
+<p>其次：就是把HTMLCollection等转换为Array</p>
+<p>万金油方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.slice.call();</div></pre></td></tr></table></figure>
+<p>最后：将数组去重</p>
+<p>讨论组大神黄玄给了个牛逼的答案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Set</span>($$(<span class="string">'*'</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> e.tagName)).size;</div></pre></td></tr></table></figure>
+<p>自己的答案</p>
+<p><img src="images/hax5.png" alt=""></p>
+<h2 id="2">反思</h2>
 
-<p>对于白帽来说，配置环境是再正常不过的事了，这里使用的环境mysql5.7.15,nginx1.8.0,php5.6.25<br>当时下了php5.6.27,出现了跟php7一样的问题，啥配置都正确，就是login.php一直显示空白，google了n久，换了跟本地一样的php5.6.25，直接跑起来。。</p>
-<h3 id="11">mysql</h3>
+<p>确实如同老师所讲，自己对js原生api、es6相比以前也有了更深的认识。</p>
 
-<p><a href="https://typecodes.com/web/centos7compilemysql.html" target="_blank" rel="external">参考</a></p>
-<h3 id="12">nginx</h3>
+      
+    </div>
 
-<p><a href="http://blog.aboutc.net/nginx/62/compile-and-install-nginx-on-linux" target="_blank" rel="external">参考</a></p>
-<p>记住要把naxsi克隆到本地，编译时增加参数</p>
-<p>–add-module=../naxsi/naxsi_src/ \</p>
-<h3 id="13">php</h3>
-
-<p><a href="http://blog.aboutc.net/linux/65/compile-and-install-php-on-linux" target="_blank" rel="external">参考</a></p>
-<h2 id="2">在nginx配置naxsi</h2>
-
-<p>一、命令行复制naxsi_config中的naxsi_core.rules到nginx的etc配置目录</p>
-<p>二、在nginx的etc配置目录新建一个naxsi.rules</p>
-<p>代码如下</p>
-<p>SecRulesEnabled;</p>
-<p>DeniedUrl “/RequestDenied”;</p>
-<p>CheckRule “$SQL &gt;= 8” BLOCK;</p>
-<p>CheckRule “$RFI &gt;= 8” BLOCK;</p>
-<p>CheckRule “$TRAVERSAL &gt;= 4” BLOCK;</p>
-<p>CheckRule “$EVADE &gt;= 4” BLOCK;</p>
-<p>CheckRule “$XSS &gt;= 8” BLOCK;</p>
-<p>三、</p>
-<p>在http{}中设置include ../naxsi_core.rules;</p>
-<p>在server{}中设置 include ../naxsi.rules;</p>
-<h2 id="3">演示</h2>
-
-<p><img src="images/haha.png" alt=""></p>
-<p><a href="https://www.youtube.com/embed/sJoPRvhTYW4" target="_blank" rel="external">自备梯子</a>。。</p>
-<h2 id="4">naxsi屏蔽神兵利器sqlmap</h2>
-
-<p>首先，关闭防火墙（在ngnix.conf禁用前面添加的rules,重启nginx）</p>
-<p><code>./sqlmap.py -u&quot;http://localhost:8900/DVWA-1.9/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=m2ur19k10komlqhno1b0676of4&quot; --dbs</code></p>
-<p>如图</p>
-<p><img src="images/naxsi1.png" alt=""></p>
-<p>再次，开启防火墙，同样是上面语句（记得把sqlmap纪录的output删除，不然会得到跟上面一样的结果）</p>
-<p>如图</p>
-<p><img src="images/naxsi2.png" alt=""></p>
-<p>提示有WAF并且parameter ‘id’ does not seem to be injectable</p>
-<h2 id="5">后记</h2>
-
-<p>一、搭建环境真的是各种问题，刚开始login.php空白以为是nginx无法解析php（后面翻文档，无法解析是页面直接输出php代码），试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
-<p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptables策略。希望自己都能过上几遍。。。</p>
-<p>三、类似modsecurity这种WAF其实也可用sqlmap中强大的tamper绕过，今天重拾sqlmap发现多了好多东西。。</p>
-
-          
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/cors/" rel="next" title="前后端分离玩法之CORS">
+                <i class="fa fa-chevron-left"></i> 前后端分离玩法之CORS
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -555,6 +441,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -574,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/me.png"
@@ -626,6 +525,17 @@
         
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">小热身题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">反思</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -722,6 +632,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
