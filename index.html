@@ -341,7 +341,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Set</span>($$(<span class="string">'*'</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> e.tagName)).size;</div></pre></td></tr></table></figure>
 <p>自己的答案</p>
 <p><img src="images/hax5.png" alt=""></p>
-<p>添加arrow function</p>
+<p>添加Arrow functions</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> seen =&#123;&#125;;</div><div class="line">    <span class="keyword">return</span> $$(<span class="string">'*'</span>).filter((<span class="function"><span class="params">item</span> =&gt;</span> seen.hasOwnProperty(item.tagName) ? <span class="literal">false</span> : (seen[item.tagName] = <span class="literal">true</span>)));</div><div class="line">&#125;)().length;</div></pre></td></tr></table></figure>
 <h2 id="2">反思</h2>
 
