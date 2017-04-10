@@ -250,6 +250,133 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/10/proxy-md/" itemprop="url">
+                  反向代理设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-10T18:17:14+08:00" content="2017-04-10">
+              2017-04-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="#1">apache</a></li>
+<li><a href="#2">nginx</a></li>
+</ul>
+<hr>
+<h2 id="1">apache</h2>
+
+<p>我们在apache上设置一个网站，用nginx来代理</p>
+<p>apache配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;VirtualHost *:9905&gt;</div><div class="line">    DocumentRoot &quot;/var/web/ife-2017&quot;</div><div class="line">    ServerName 127.0.0.1</div><div class="line">    ErrorLog &quot;/private/var/log/apache2/127.0.0.1-error_log&quot;</div><div class="line">    CustomLog &quot;/private/var/log/apache2/127.0.0.1-access_log&quot; common</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line"></div><div class="line">&lt;Directory &quot;/var/web/ife-2017&quot;&gt;</div><div class="line">    Options Indexes FollowSymLinks MultiViews</div><div class="line">    MultiviewsMatch Any</div><div class="line">    Order deny,allow</div><div class="line">    Allow from all</div><div class="line">    Require all granted</div><div class="line">    AllowOverride All</div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure>
+<h2 id="2">nginx</h2>
+
+<p>nginx配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       8085;</div><div class="line">    server_name  localhost;</div><div class="line">    </div><div class="line"></div><div class="line">    error_log   /usr/local/var/logs/nginx/error.log;</div><div class="line">    access_log  /usr/local/var/logs/nginx/access.log main;</div><div class="line"></div><div class="line">    ssl                  off;</div><div class="line">    ssl_certificate      ssl/phpmyadmin.crt;</div><div class="line">    ssl_certificate_key  ssl/phpmyadmin.key;</div><div class="line"></div><div class="line">    ssl_session_timeout  5m;</div><div class="line"></div><div class="line">    ssl_protocols  SSLv2 SSLv3 TLSv1;</div><div class="line">    ssl_ciphers  HIGH:!aNULL:!MD5;</div><div class="line">    ssl_prefer_server_ciphers   on;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">       proxy_set_header        Host $http_host;</div><div class="line">	    proxy_pass http://localhost:9905;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>8085可以访问9905的资源即配置成功，proxy_pass可能增加nginx的压力，在nginx配置的其他网站，可以重启php-fpm来消除缓存，然后在访问其他网站</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/30/johnhax-md/" itemprop="url">
                   贺老师知乎live的面试题小实践
                 </a>
@@ -374,153 +501,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/28/cors/" itemprop="url">
-                  前后端分离玩法之CORS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-28T15:37:52+08:00" content="2016-11-28">
-              2016-11-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="#1">前言</a><ul>
-<li><a href="#11">CORS</a></li>
-</ul>
-</li>
-<li><a href="#2">开始</a><ul>
-<li><a href="#21">框架</a></li>
-<li><a href="#22">vue配置</a></li>
-<li><a href="#23">apache配置</a></li>
-<li><a href="#24">请求过程</a></li>
-<li><a href="#25">引用</a></li>
-</ul>
-</li>
-<li><a href="#3">后记</a></li>
-</ul>
-<hr>
-<p></p><h2 id="1">前言</h2><p></p>
-<h3 id="11">cors</h3><br>最近在学习vue，想来实践个简单的前后端分离demo，前端取到后端发给其的唯一token可以使前端用户访问后端各种各样的接口<br><br><h2 id="2">开始</h2><br><h3 id="21">框架</h3><br>前端采用vue，node生成一个web server,后端采用ci作为api接口，apache作为后端代理服务器<br><br><h3 id="22">vue配置</h3><br>前端的提交的数据跟mvc时代（表单提交）有了些区别，vue使用v-model的双向绑定使数据提交到v-on:click(@click)指定submit方法上，submit在调用指定模块下已写好的提交方式（mvc时代是直接提交到controller下所写的方法，mv*时代是js写好一个方法来获取数据，在提交给已写好模块的提交方式）<br><br><img src="images/cors21.png" alt=""><br><br><img src="images/cors22.png" alt=""><br><br>在vue入口文件引入vue-resource包，添加自定义头，后端获取这些自定义头来限制访问<br><br><img src="images/cors23.png" alt=""><br><br><h3 id="23">apache配置</h3>
-
-<p><img src="images/cors31.png" alt=""></p>
-<p>其中8006端口资源是node生成的web server，我们只允许其访问后端api。RewriteCond是因为当发起跨域请求时浏览器发的一个预请求(pre-flight)，我们需要代理服务器处理一下，回复状态码200。</p>
-<h3 id="24">请求过程</h3>
-
-<p><img src="images/cors41.png" alt=""></p>
-<p>预请求</p>
-<p><img src="images/cors42.png" alt=""></p>
-<p><img src="images/cors43.png" alt=""></p>
-<p></p><h3 id="25">引用</h3><br><a href="https://github.com/auth0-blog/vue-jwt-authentication" target="_blank" rel="external">vue-jwt-authentication</a><p></p>
-<p><a href="https://github.com/moemoe89/simple-codeigniter-rest-api" target="_blank" rel="external">rest-api</a></p>
-<p></p><h2 id="3">后记</h2><br>大前端感觉真的是解决各种包、模块的问题，服务器端js(node)对session的管理就感觉各种坑。。<p></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -561,7 +546,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

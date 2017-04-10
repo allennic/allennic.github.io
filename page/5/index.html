@@ -86,7 +86,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Allen for Hacking">
-<meta property="og:url" content="http://allennic.top/page/3/index.html">
+<meta property="og:url" content="http://allennic.top/page/5/index.html">
 <meta property="og:site_name" content="Allen for Hacking">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Allen for Hacking">
@@ -110,7 +110,7 @@
 
 
 
-  <link rel="canonical" href="http://allennic.top/page/3/"/>
+  <link rel="canonical" href="http://allennic.top/page/5/"/>
 
 
   <title> Allen for Hacking </title>
@@ -250,8 +250,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/08/naxsi/" itemprop="url">
-                  DVWA启用nginx防火墙模块-naxsi
+                <a class="post-title-link" href="/2016/09/30/ci-md/" itemprop="url">
+                  codeigniter用redis操作session
                 </a>
               
             
@@ -264,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T15:34:03+08:00" content="2016-11-08">
-              2016-11-08
+            <time itemprop="dateCreated" datetime="2016-09-30T10:15:05+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -314,216 +314,78 @@
         
           
             <ul>
-<li><p><a href="#1">环境配置</a></p>
-<ul>
-<li><a href="#10">前言</a></li>
-<li><a href="#11">mysql</a></li>
-<li><a href="#12">nginx</a></li>
-<li><a href="#13">php</a></li>
+<li><a href="#yilai">依赖安装</a><ul>
+<li><a href="#predis">predis</a></li>
+<li><a href="#phpredis">phpredis</a></li>
+<li><a href="#redis－server">redis－server</a></li>
 </ul>
 </li>
-<li><p><a href="#2">在nginx配置naxsi</a> </p>
-</li>
-<li><p><a href="#3">演示</a></p>
-</li>
-<li><p><a href="#4">naxsi屏蔽神兵利器sqlmap</a></p>
-</li>
-<li><p><a href="#5">后记</a></p>
-</li>
+<li><a href="#import">ci中使用predis</a><ul>
+<li><a href="#1">导入</a></li>
+<li><a href="#2">index.php改写</a></li>
+<li><a href="#3">在controller使用</a></li>
 </ul>
-<hr>
-<h2 id="1">环境配置</h2>
-
-<h3 id="10">前言</h3>
-
-<p>对于白帽来说，配置环境是再正常不过的事了，这里使用的环境mysql5.7.15,nginx1.8.0,php5.6.25<br>当时下了php5.6.27,出现了跟php7一样的问题，啥配置都正确，就是login.php一直显示空白，google了n久，换了跟本地一样的php5.6.25，直接跑起来。。</p>
-<h3 id="11">mysql</h3>
-
-<p><a href="https://typecodes.com/web/centos7compilemysql.html" target="_blank" rel="external">参考</a></p>
-<h3 id="12">nginx</h3>
-
-<p><a href="http://blog.aboutc.net/nginx/62/compile-and-install-nginx-on-linux" target="_blank" rel="external">参考</a></p>
-<p>记住要把naxsi克隆到本地，编译时增加参数</p>
-<p>–add-module=../naxsi/naxsi_src/ \</p>
-<h3 id="13">php</h3>
-
-<p><a href="http://blog.aboutc.net/linux/65/compile-and-install-php-on-linux" target="_blank" rel="external">参考</a></p>
-<h2 id="2">在nginx配置naxsi</h2>
-
-<p>一、命令行复制naxsi_config中的naxsi_core.rules到nginx的etc配置目录</p>
-<p>二、在nginx的etc配置目录新建一个naxsi.rules</p>
-<p>代码如下</p>
-<p>SecRulesEnabled;</p>
-<p>DeniedUrl “/RequestDenied”;</p>
-<p>CheckRule “$SQL &gt;= 8” BLOCK;</p>
-<p>CheckRule “$RFI &gt;= 8” BLOCK;</p>
-<p>CheckRule “$TRAVERSAL &gt;= 4” BLOCK;</p>
-<p>CheckRule “$EVADE &gt;= 4” BLOCK;</p>
-<p>CheckRule “$XSS &gt;= 8” BLOCK;</p>
-<p>三、</p>
-<p>在http{}中设置include ../naxsi_core.rules;</p>
-<p>在server{}中设置 include ../naxsi.rules;</p>
-<h2 id="3">演示</h2>
-
-<p><img src="images/haha.png" alt=""></p>
-<p><a href="https://www.youtube.com/embed/sJoPRvhTYW4" target="_blank" rel="external">自备梯子</a>。。</p>
-<h2 id="4">naxsi屏蔽神兵利器sqlmap</h2>
-
-<p>首先，关闭防火墙（在ngnix.conf禁用前面添加的rules,重启nginx）</p>
-<p><code>./sqlmap.py -u&quot;http://localhost:8900/DVWA-1.9/vulnerabilities/sqli/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low;PHPSESSID=m2ur19k10komlqhno1b0676of4&quot; --dbs</code></p>
-<p>如图</p>
-<p><img src="images/naxsi1.png" alt=""></p>
-<p>再次，开启防火墙，同样是上面语句（记得把sqlmap纪录的output删除，不然会得到跟上面一样的结果）</p>
-<p>如图</p>
-<p><img src="images/naxsi2.png" alt=""></p>
-<p>提示有WAF并且parameter ‘id’ does not seem to be injectable</p>
-<h2 id="5">后记</h2>
-
-<p>一、搭建环境真的是各种问题，刚开始login.php空白以为是nginx无法解析php（后面翻文档，无法解析是页面直接输出php代码），试写了phpinfo发现可以解析，然后google了下又说是mysql的问题，又写了个查库的页面发现可以连接mysql并且输出。。最后还是换了php5.6.25才一路顺风</p>
-<p>二、最近翻了些文档，自己总结的防火墙有三种，分别为部署在项目本身的PHPIDS、部署在web服务器边缘的modsecurity和naxsi等、部署在主机边界的iptables策略。希望自己都能过上几遍。。。</p>
-<p>三、类似modsecurity这种WAF其实也可用sqlmap中强大的tamper绕过，今天重拾sqlmap发现多了好多东西。。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/07/axios/" itemprop="url">
-                  项目启用axios，拥抱Promise
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T16:52:33+08:00" content="2016-11-07">
-              2016-11-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="#1">axios</a><ul>
-<li><a href="#11">使用</a></li>
-<li><a href="#12">与$.ajax的比较</a></li>
-<li><a href="#13">bug</a></li>
+</li>
+<li><a href="#31">具体小项目实战</a><ul>
+<li><a href="#32">为啥用redis</a></li>
+<li><a href="#33">cookie&amp;&amp;session黑人问号？</a></li>
+<li><a href="#34">php.ini配置和ci下config.php配置</a></li>
+<li><a href="#35">php从浏览器取cookie</a></li>
 </ul>
 </li>
 </ul>
 <hr>
-<h2 id="1">axios</h2>
+<h2 id="yilai">依赖安装</h2>
 
-<h3 id="11">使用</h3>
+<p></p><h3 id="predis">predis</h3><br>项目地址:<a href="https://github.com/nrk/predis" target="_blank" rel="external">predis</a><br>clone下来之后composer install，拷贝这几个到一个新建文件夹(lib_redis)，方便导入ci<br><img src="images/11.png" alt=""><p></p>
+<p></p><h3 id="phpredis">phpredis</h3><br>mac福利君，brew install php56-redis<br>php -i |grep redis或者进入phpinfo页面看是否已有redis支持<p></p>
+<p></p><h3 id="redis－server">redis－server</h3><br><a href="http://redis.io/topics/quickstart" target="_blank" rel="external">安装教程</a><br>建议安装rdm桌面可视化工具<p></p>
+<h2 id="import">ci中使用predis</h2>
 
-<p>直接加入cdn：</p>
-<p><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</code></p>
-<h3 id="12">与$.ajax的比较</h3>
+<p></p><h3 id="1">导入</h3><br>把lib_redis文件夹导入ci目录下的／application／libraries下<br>在新建一个类，<img src="images/12.png" alt="如图"><p></p>
+<p>千万注意类不要与ci内部类重名，重名就要用MY_重写ci内部类才能生效。</p>
+<p></p><h3 id="2">index.php改写</h3><br>修改ci根目录index.php，在底部添加<img src="images/13.png" alt="如图"><p></p>
+<p></p><h3 id="3">在controller使用</h3><br>如图<p></p>
+<p><img src="images/14.png" alt=""></p>
+<p>这时就要疯狂查手册什么是set，什么是hset等</p>
+<h2 id="31">具体小项目实战</h2>
 
-<p><img src="images/axios1.png" alt=""></p>
-<p><img src="images/axios2.png" alt=""></p>
-<h3 id="13">bug</h3>
-
-<p>ci与axios使用会触发一个致命的<a href="https://bugs.php.net/bug.php?id=66763" target="_blank" rel="external">bug</a>，是php5.6引起的。<br>具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用</p>
-<p>json_decode(trim(file_get_contents(‘php://input’)), true);</p>
-<p>虽然取到值了，但是返回给前端的json却带有warning，无法用js取到返回的指定的值。</p>
-<p>补上面留下的坑，可以把warning去掉233。。js可以抓取指定的值</p>
-<p>首先：<br>打开php.ini文件</p>
-<p>添加这个配置:always_populate_raw_post_data = -1</p>
-<p>或者添加这个:enable_post_data_reading = On(官方推荐这个)</p>
-<p>其次：</p>
-<p>php和web服务器都要重启！！！都要重启！！！都要重启！！！（我改完后只是重启php，没有重启apache，༼ ༎ຶ ෴ ༎ຶ༽）</p>
+<p></p><h3 id="32">为啥用redis</h3><br>一、为了跳出舒适区<p></p>
+<p>二、session放在ci一个叫files的drivers里。其实就是当文件放在磁盘存储 ，当会话多了，io压力，自行脑补。</p>
+<p>二、搭建个后台人员管理系统，100来人的登录会话id。</p>
+<p></p><h3 id="33">cookie&amp;&amp;session黑人问号？</h3><br>session一旦产生会伴随一个叫session_id的儿子产生，session_id就是客户端的cookie，session_id会存储在客户端浏览器，session则会存在服务器所指定的地方（当作文件存储的话一般会在/var/tmp介个默认目录，redis的话你懂的。）<p></p>
+<p>这里还要说下，我是在登录页面，密码验证成功下才产生这个session。</p>
+<p>如果用户直接访问用户主页，php会判断用户携带的请求头里的cookie里的session_id是否在redis里，如果存在，根据业务需求显示信息。如果不存在则返回登录页。</p>
+<p></p><h3 id="34">php.ini配置和ci下config.php配置</h3><br>坑很多，谨慎<br>config.php配置，记得把默认files drivers关了<p></p>
+<p>$config[‘sess_driver’] = ‘redis’;</p>
+<p>$config[‘sess_save_path’] = ‘tcp://127.0.0.1:6379?database=1’;</p>
+<p>如果redis需要密码则$config[‘sess_save_path’] = ‘tcp://127.0.0.1:6379?auth=youpasswd&amp;database=1’</p>
+<p>php.ini配置</p>
+<p>session.save_handler = redis</p>
+<p>session.save_path = tcp://127.0.0.1:6379?database=1</p>
+<p>切记把php.ini中session.auto_start设置为零。血与泪的教训，测试程序时莫名产生这个PHPSESSID。<br>程序逻辑压根就没验证正确也产生，耽误了我的人生你知道么！！！</p>
+<p>还有可以试试改变下database的值（默认为0，有0-15的值），看看session到底存在哪，使用ci的配置还是php.ini的配置。坑已经留给你们，跳不跳不关我事。</p>
+<p></p><h3 id="35">php从浏览器取cookie</h3><br>当时天真以为js的document.cookie取，你是在ci的controller取的大哥，你取给我看看！后面理清思路，cookie的存在是保存在浏览器，并且会记录从哪个网站产生的。所以，我们只要在那个网站上浏览任意网页都会有session_id存在（这个session_id是永久存在），至于服务器端session会有个session.cookie_lifetime的生命周期，看你项目大小设定。<p></p>
+<p>说了这么多就是$_COOKIE取的，会得到一个关联数组，如图<br><img src="images/15.png" alt=""></p>
+<p>这时我们就要看存在redis上的session是以什么方式存储的，首先，先存储<br>调用我们在libraries下写的类。<br>$sessHandler = $this-&gt;redis1-&gt;handle();</p>
+<p>session_set_save_handler($sessHandler);</p>
+<p>session_start();</p>
+<p>跑到redis上看看，(redis-cli)</p>
+<p>select 1（选择我们存储在的数据库，默认是查0这个数据库的）</p>
+<p>keys *;或者在rdm中查看，发现直接是key形式存储</p>
+<p>这个是rmd截图</p>
+<p><img src="images/16.png" alt=""></p>
+<p>这个是firefox截图</p>
+<p><img src="images/17.png" alt=""></p>
+<p>我们再看看如果以files为drivers存储session会是咋样，是这样</p>
+<p><img src="images/18.png" alt=""></p>
+<p>问题又来了，怎么判断客户端session_id是否存在redis中。</p>
+<p>说先我想到的是，把会话取出放到一个数组，用is_array这个判断浏览器取到的会话的哈希值是否在这个数组中。。不得不说真是天真</p>
+<p>后面又翻了redis手册发现有exists这个命令。然后</p>
+<p>foreach($cookie as $k =&gt; $v)</p>
+<p>$exi_session = $redis-&gt;exists($v);</p>
+<p>if($exi_session == 1)<br>{<br>    //执行相关业务<br>}</p>
+<p>总结，多想多实践，实践出真知</p>
 
           
         
@@ -556,7 +418,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 

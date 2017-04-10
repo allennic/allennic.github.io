@@ -250,6 +250,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/04/ajax/" itemprop="url">
+                  浅谈ajax的request以及response
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T21:18:37+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p><a href="#1">request</a></p>
+<ul>
+<li><a href="#11">发起</a></li>
+</ul>
+</li>
+<li><p><a href="#2">response</a></p>
+<ul>
+<li><a href="#21">接收</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1">request</h2>
+
+<h3 id="11">发起</h3><br>我们直接引入jQuery库来发起，也有研究过promise，fetch，async等原生写法。可能缘分没到，还没用起来233。。<br><br><img src="images/a1.png" alt=""><br><br>如图所示，完成一个简单的发起，这里要考验的是data是以什么类型发起的，如图我就是以单个key=&gt;value形式发起。<br><br>假如data要以要以数组的形式发起，可以这样，把整个表单的值提交<br><br><img src="images/a2.png" alt=""><br><br><br>假如data只提交checkbox的索引值，可以这样，把选取到的值放入sList这个变量中<br><br><img src="images/a3.png" alt=""><br><br>总之，提交的姿势很多，之后在各框架controller中做处理<br><br><br><h2 id="2">response</h2><br><br><h3 id="21">接收</h3>
+
+<p>当data提交成功后，我们在controller中也做了相应的处理，这时就要返回一个信息给ajax的response，让其在view页面做相应的处理。</p>
+<p>以ci为例，当时直接在ci中的controller做sql执行完的逻辑判断，愣是没有输出任何内容到view中。后面试试在model中判断然后返回一个数组。成功了居然！！！</p>
+<p>model中</p>
+<p><img src="images/a4.png" alt=""></p>
+<p>controller中接受并且返回到view，这里注意一定要以echo形式输出，不能用return</p>
+<p><img src="images/a5.png" alt=""></p>
+<p>view接受页面，要说接收这样的对象数组，不要用JSON对象的任何方法，以为其压根就不是json文件，血与泪的教训，当时一直在试取key或者value的值，什么$.each、for..in遍历就是取不到！！！后面直接alert(obj[1])直接出来！！！此乃深坑</p>
+<p><img src="images/a6.png" alt=""></p>
+<p>成功页面</p>
+<p><img src="images/a7.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/09/hooks-md/" itemprop="url">
                   hooks验证用户权限
                 </a>
@@ -358,196 +497,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/30/ci-md/" itemprop="url">
-                  codeigniter用redis操作session
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-30T10:15:05+08:00" content="2016-09-30">
-              2016-09-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="#yilai">依赖安装</a><ul>
-<li><a href="#predis">predis</a></li>
-<li><a href="#phpredis">phpredis</a></li>
-<li><a href="#redis－server">redis－server</a></li>
-</ul>
-</li>
-<li><a href="#import">ci中使用predis</a><ul>
-<li><a href="#1">导入</a></li>
-<li><a href="#2">index.php改写</a></li>
-<li><a href="#3">在controller使用</a></li>
-</ul>
-</li>
-<li><a href="#31">具体小项目实战</a><ul>
-<li><a href="#32">为啥用redis</a></li>
-<li><a href="#33">cookie&amp;&amp;session黑人问号？</a></li>
-<li><a href="#34">php.ini配置和ci下config.php配置</a></li>
-<li><a href="#35">php从浏览器取cookie</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="yilai">依赖安装</h2>
-
-<p></p><h3 id="predis">predis</h3><br>项目地址:<a href="https://github.com/nrk/predis" target="_blank" rel="external">predis</a><br>clone下来之后composer install，拷贝这几个到一个新建文件夹(lib_redis)，方便导入ci<br><img src="images/11.png" alt=""><p></p>
-<p></p><h3 id="phpredis">phpredis</h3><br>mac福利君，brew install php56-redis<br>php -i |grep redis或者进入phpinfo页面看是否已有redis支持<p></p>
-<p></p><h3 id="redis－server">redis－server</h3><br><a href="http://redis.io/topics/quickstart" target="_blank" rel="external">安装教程</a><br>建议安装rdm桌面可视化工具<p></p>
-<h2 id="import">ci中使用predis</h2>
-
-<p></p><h3 id="1">导入</h3><br>把lib_redis文件夹导入ci目录下的／application／libraries下<br>在新建一个类，<img src="images/12.png" alt="如图"><p></p>
-<p>千万注意类不要与ci内部类重名，重名就要用MY_重写ci内部类才能生效。</p>
-<p></p><h3 id="2">index.php改写</h3><br>修改ci根目录index.php，在底部添加<img src="images/13.png" alt="如图"><p></p>
-<p></p><h3 id="3">在controller使用</h3><br>如图<p></p>
-<p><img src="images/14.png" alt=""></p>
-<p>这时就要疯狂查手册什么是set，什么是hset等</p>
-<h2 id="31">具体小项目实战</h2>
-
-<p></p><h3 id="32">为啥用redis</h3><br>一、为了跳出舒适区<p></p>
-<p>二、session放在ci一个叫files的drivers里。其实就是当文件放在磁盘存储 ，当会话多了，io压力，自行脑补。</p>
-<p>二、搭建个后台人员管理系统，100来人的登录会话id。</p>
-<p></p><h3 id="33">cookie&amp;&amp;session黑人问号？</h3><br>session一旦产生会伴随一个叫session_id的儿子产生，session_id就是客户端的cookie，session_id会存储在客户端浏览器，session则会存在服务器所指定的地方（当作文件存储的话一般会在/var/tmp介个默认目录，redis的话你懂的。）<p></p>
-<p>这里还要说下，我是在登录页面，密码验证成功下才产生这个session。</p>
-<p>如果用户直接访问用户主页，php会判断用户携带的请求头里的cookie里的session_id是否在redis里，如果存在，根据业务需求显示信息。如果不存在则返回登录页。</p>
-<p></p><h3 id="34">php.ini配置和ci下config.php配置</h3><br>坑很多，谨慎<br>config.php配置，记得把默认files drivers关了<p></p>
-<p>$config[‘sess_driver’] = ‘redis’;</p>
-<p>$config[‘sess_save_path’] = ‘tcp://127.0.0.1:6379?database=1’;</p>
-<p>如果redis需要密码则$config[‘sess_save_path’] = ‘tcp://127.0.0.1:6379?auth=youpasswd&amp;database=1’</p>
-<p>php.ini配置</p>
-<p>session.save_handler = redis</p>
-<p>session.save_path = tcp://127.0.0.1:6379?database=1</p>
-<p>切记把php.ini中session.auto_start设置为零。血与泪的教训，测试程序时莫名产生这个PHPSESSID。<br>程序逻辑压根就没验证正确也产生，耽误了我的人生你知道么！！！</p>
-<p>还有可以试试改变下database的值（默认为0，有0-15的值），看看session到底存在哪，使用ci的配置还是php.ini的配置。坑已经留给你们，跳不跳不关我事。</p>
-<p></p><h3 id="35">php从浏览器取cookie</h3><br>当时天真以为js的document.cookie取，你是在ci的controller取的大哥，你取给我看看！后面理清思路，cookie的存在是保存在浏览器，并且会记录从哪个网站产生的。所以，我们只要在那个网站上浏览任意网页都会有session_id存在（这个session_id是永久存在），至于服务器端session会有个session.cookie_lifetime的生命周期，看你项目大小设定。<p></p>
-<p>说了这么多就是$_COOKIE取的，会得到一个关联数组，如图<br><img src="images/15.png" alt=""></p>
-<p>这时我们就要看存在redis上的session是以什么方式存储的，首先，先存储<br>调用我们在libraries下写的类。<br>$sessHandler = $this-&gt;redis1-&gt;handle();</p>
-<p>session_set_save_handler($sessHandler);</p>
-<p>session_start();</p>
-<p>跑到redis上看看，(redis-cli)</p>
-<p>select 1（选择我们存储在的数据库，默认是查0这个数据库的）</p>
-<p>keys *;或者在rdm中查看，发现直接是key形式存储</p>
-<p>这个是rmd截图</p>
-<p><img src="images/16.png" alt=""></p>
-<p>这个是firefox截图</p>
-<p><img src="images/17.png" alt=""></p>
-<p>我们再看看如果以files为drivers存储session会是咋样，是这样</p>
-<p><img src="images/18.png" alt=""></p>
-<p>问题又来了，怎么判断客户端session_id是否存在redis中。</p>
-<p>说先我想到的是，把会话取出放到一个数组，用is_array这个判断浏览器取到的会话的哈希值是否在这个数组中。。不得不说真是天真</p>
-<p>后面又翻了redis手册发现有exists这个命令。然后</p>
-<p>foreach($cookie as $k =&gt; $v)</p>
-<p>$exi_session = $redis-&gt;exists($v);</p>
-<p>if($exi_session == 1)<br>{<br>    //执行相关业务<br>}</p>
-<p>总结，多想多实践，实践出真知</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -588,7 +542,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
