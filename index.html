@@ -250,6 +250,149 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/15/summary/" itemprop="url">
+                  阶段总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-15T23:18:37+08:00" content="2017-08-15">
+              2017-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="#1">0x01</a></li>
+</ul>
+<ul>
+<li><a href="#2">0x02</a>    </li>
+</ul>
+<hr>
+<h2 id="1">0x01</h2>
+
+
+<p>转眼都快步入安全圈三个月了。</p>
+<p>回想第一周开始熟悉工作坏境，把工作所需的环境搭起来。</p>
+<p>第一周是蛮亢奋的。其中搭建nessus真是虐得绝望，后来用网络上的临时邮箱不断申请激活码才搭建成功。恰巧iscc比赛还在火热进行中，明哥叫我注册个账号玩玩。最后ichunqiu给了个福利，给每个账号一个月的时间学习企安殿的课程。当时就看了知道创宇的课程还有android逆向的课程，android逆向后面几周就被我当成自己的side project来捣鼓。</p>
+<p>第二周，开始去移动驻场，然后按照周任务表开始挖洞了。但是都是些java站的登录框，很是蛋疼。基本都是丢awvs进行扫描。对于有验证码的站，使用pkav的工具来做重放，可实现爆破。因为任务比较松，期间重新搭起sqli-lab来复习手注，写shell和修改字段数据重点看了下。</p>
+<p>第三周，周任务是内网的几个c段，只能扫一些服务端口还有可以爆破的端口，期间尝试了hydra、medusa这两款工具，之后才知道nmap其实也可以做简单的弱口令爆破。nmap导出的参数比较喜欢用-oA，导出的xml可以很好做整理。还有就是扫段的话，nessus是必不可少的利器，可以结合msf去做一些很好的验证。</p>
+<p>第四周，大抵同上周一样。想说的是，回去捣鼓的android逆向因为android killer反编译不出smali代码，掉了几晚的坑，后面还是用apktool直接反编译，修改点smali源码再回编译。感受最深的是一步一步看smali代码大概还原成java代码，明白程序的逻辑。</p>
+<p>第五周，开始收集自己的一些做fuzz的小字典，遇到两个有意思的洞，一个是DS.store源码泄露，一个是redis未授权访问，结合自己以前捣鼓的，把自己主机key写入对方的authorized_keys中，期间还尝试再/tmp路径写一句话木马。这周主要还看了smb（ms17-010）这个洞的复现文章，使用ShadowBroker的FUZZBUNCH框架，被坑的是msfvenom生成的后门对于windows版本是有影响的，当时复现生成32位的后门放到64位的windows上，愣是没有反弹shell回来。。<br>知道set rhost也可用file://做批量扫描，在msf中扫描完的结果可以自动保存入库，用services -r tcp -p 445 -R在另外的模块就可不用设置rhost。<br>用sparta做扫描时，生成的sql文件，去折腾了下（取出想要的数据），其中select ip from db_tables_nmap_host where id in (select host_id from db_tables_nmap_port where port_id=’445’ and state=’open’);这个联表查询真的是感觉自己好久没写sql了。。</p>
+<p>第六周，按时完成周任务外，看了一些反弹shell的各种写法、ssh端口转发、crontab后门的一些文章。android逆向也在这周夭折，因为准备要用root过之后的手机做真机调试时，win10不断报错不断重启。</p>
+<p>第七-八周，检查外网十来个段的弱口令，处于内网的kali上的工具nmap、hydra、medusa对于扫描和爆破都出现误报，基本是不准确的。这时就结合之前玩过的docker在vps上直接安装kali，对于扫描工具，也在vps上搭了masscan和zmap，没再出现过误报的情况。<br>之后的任务基本上是：公网段用vps上docker搭建的kali，内网段则用虚拟机上的kali。</p>
+<p>第九周，周任务为几个内网段，这周刚好在t00ls水贴满要求，可以阅读全部的板块（但是权限高于20的贴还是不能阅读。。）对于内网渗透文章印象最深刻的是域渗透。</p>
+<p>第十周，周任务转为外网十来个web站点，这周对于awvs又有个新的认识，其扫到一个文件上传漏洞，我想把请求头复制到burp去做重放，后面复制复制着发现在awvs也可以直接修改请求头且能重放，真是后知后觉。。</p>
+<p>第十一周，周任务也是web站点，开始使用sqlipy、bybass WAF、Domain hunter、J2eescan等bp上的一些插件，其中Domain hunter结合bp的爬虫跑出的子域名真是完爆github上的一些开源工具，sqlipy更自动化完成注入。<br>其中导入的jython-standalone不要放在以中文命名的路径导入。由于搭了个nginx来做ssrf的测试，开始注意一些日志的访问，看到n多找后台的这种请求，想统计下ip的访问量和web请求路径出现的次数，看了一些用sed和awk处理日志的文章<br>对于sqlmap上的tamper开始慢慢试用起来，有奇效！挖了几个oracle的SQL盲注。</p>
+<p>第十二周，周任务同为web站点，这周有一个unicode编码问题造成的反射型xss，因为不知道怎么把想测试的payload转成技术文章中讲到的编码格式，在t00ls上做了一回伸手党，还真有大佬共享了这个工具！这周还用mamp pro搭了php的环境，拉了t00ls上开源的的cms来做漏洞复现</p>
+<p>流水账写完。</p>
+<h2 id="2">0x02</h2>
+
+
+<p>将近三个月来的周任务能按时按量的完成，对于漏洞的质量也在不断提升。</p>
+<p>感觉自己最大的进步有三点。一是对于一定量的渗透任务不在惧怕，可以承受慢慢累加的压力。二是对于渗透过程中要随时做记录，自己比以前做的更细节到位，以前做开发时可能要随手记录一个代码片段或者写个注释，相对少点。但是渗透要做的记录多而杂，要求你能从众多信息中找到一个突破口，很考验你做记录所标的轻重缓急。三是对于漏洞的原理上更为深刻，工具的使用上更为娴熟。<br>这三点可能都能为自己以后的发展打下更好的基石</p>
+<p>对于自己应该要改进的应该是少熬夜不迟到。另外，对于自己遇到的问题感觉都能从google或者一些论坛找到解决方案。我觉得过于简单的问题提出可能就不足以显示你的能力。所以一般都是在不影响工作的情况下自己解决。<br>最后想对公司提些个人看法，对于以技术、技术服务为支撑的公司，我觉得内部应该要多点技术交流(包括但不限于自己解决的一些问题、自己在捣鼓的一些项目让你有哪些挫败亦或成就感)</p>
+<p>最后，想感谢智哥和洋哥能给我提供这次机会！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/10/proxy-md/" itemprop="url">
                   反向代理设置
                 </a>
@@ -356,151 +499,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/30/johnhax-md/" itemprop="url">
-                  贺老师知乎live的面试题小实践
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-30T15:25:07+08:00" content="2016-12-30">
-              2016-12-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="#1">小热身题</a></li>
-</ul>
-<ul>
-<li><a href="#2">反思</a></li>
-</ul>
-<hr>
-<h2 id="1">小热身题</h2>
-
-<p>题目：给你一个页面，比方说淘宝首页吧，如何得到这个页面里一共用了多少种html标签？</p>
-<p>分析题目：首先就是要通过api把所有标签取出来；其次，不同api取出的数据类型不同，比如会生成HTMLCollection、NodeList等,要将其转换成数组；最后，对数组去重。</p>
-<p>首先：老师介绍有四个方法取出所有标签</p>
-<p>一、通过document.getElementsByTagName(‘*’);生成的数据类型为HTMLCollection</p>
-<p><img src="images/hax1.png" alt=""></p>
-<p>二、通过document.querySelectorAll(‘*’);生成的数据类型为NodeList</p>
-<p><img src="images/hax2.png" alt=""></p>
-<p>三、通过document.all;生成数据类型为HTMLCollection</p>
-<p><img src="images/hax3.png" alt=""></p>
-<p>四、通过浏览器的api，生成数据类型直接为Array</p>
-<p><img src="images/hax4.png" alt=""></p>
-<p>其次：就是把HTMLCollection等转换为Array</p>
-<p>万金油方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.prototype.slice.call();</div></pre></td></tr></table></figure>
-<p>最后：将数组去重</p>
-<p>讨论组大神黄玄给了个牛逼的答案：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Set</span>($$(<span class="string">'*'</span>).map(<span class="function"><span class="params">e</span> =&gt;</span> e.tagName)).size;</div></pre></td></tr></table></figure>
-<p>自己的答案</p>
-<p><img src="images/hax5.png" alt=""></p>
-<p>添加Arrow functions</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> seen =&#123;&#125;;</div><div class="line">    <span class="keyword">return</span> $$(<span class="string">'*'</span>).filter((<span class="function"><span class="params">item</span> =&gt;</span> seen.hasOwnProperty(item.tagName) ? <span class="literal">false</span> : (seen[item.tagName] = <span class="literal">true</span>)));</div><div class="line">&#125;)().length;</div></pre></td></tr></table></figure>
-<h2 id="2">反思</h2>
-
-<p>确实如同老师所讲，自己对js原生api、es6相比以前也有了更深的认识，不断的优化代码，对写得出代码是一回事，代码简洁优美有效率又是另外一回事这一看法深以为然(￣︶￣;)</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -546,7 +544,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

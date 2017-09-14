@@ -250,6 +250,148 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/07/axios/" itemprop="url">
+                  项目启用axios，拥抱Promise
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-07T16:52:33+08:00" content="2016-11-07">
+              2016-11-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="#1">axios</a><ul>
+<li><a href="#11">使用</a></li>
+<li><a href="#12">与$.ajax的比较</a></li>
+<li><a href="#13">bug</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1">axios</h2>
+
+<h3 id="11">使用</h3>
+
+<p>直接加入cdn：</p>
+<p><code>&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</code></p>
+<h3 id="12">与$.ajax的比较</h3>
+
+<p><img src="images/axios1.png" alt=""></p>
+<p><img src="images/axios2.png" alt=""></p>
+<h3 id="13">bug</h3>
+
+<p>ci与axios使用会触发一个致命的<a href="https://bugs.php.net/bug.php?id=66763" target="_blank" rel="external">bug</a>，是php5.6引起的。<br>具体为ci中$this-&gt;input-&gt;post接收axios.post会取不到值，网上解决方法用</p>
+<p>json_decode(trim(file_get_contents(‘php://input’)), true);</p>
+<p>虽然取到值了，但是返回给前端的json却带有warning，无法用js取到返回的指定的值。</p>
+<p>补上面留下的坑，可以把warning去掉233。。js可以抓取指定的值</p>
+<p>首先：<br>打开php.ini文件</p>
+<p>添加这个配置:always_populate_raw_post_data = -1</p>
+<p>或者添加这个:enable_post_data_reading = On(官方推荐这个)</p>
+<p>其次：</p>
+<p>php和web服务器都要重启！！！都要重启！！！都要重启！！！（我改完后只是重启php，没有重启apache，༼ ༎ຶ ෴ ༎ຶ༽）</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/04/ajax/" itemprop="url">
                   浅谈ajax的request以及response
                 </a>
@@ -368,135 +510,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/09/hooks-md/" itemprop="url">
-                  hooks验证用户权限
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-09T17:05:00+08:00" content="2016-10-09">
-              2016-10-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p><a href="#hooks">hooks</a></p>
-<ul>
-<li><a href="#hooks1">啥是hooks</a></li>
-<li><a href="#hooks2">why hooks</a></li>
-<li><a href="#hooks3">ci中使用hooks</a></li>
-</ul>
-</li>
-<li><p><a href="#hooks4">demo</a></p>
-<ul>
-<li><a href="#1">session验证和auth验证</a></li>
-<li><a href="#2"></a></li>
-<li><a href="#3">在controller使用</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="hooks">hooks</h2>
-
-<h3 id="hooks1">啥是hooks</h3>
-
-<p>可以这样理解，当请求一个url，后端设置有的一段程序通过正则这样的判断拦截下来（附着在这个入口上），然后进行相关处理，有几种处理情况，具体参考<a href="http://codeigniter.org.cn/user_guide/general/hooks.html" target="_blank" rel="external">挂钩点列表</a></p>
-<h3 id="hooks2">why hooks</h3>
-
-<p>对于这个验证，其实可以重新写一个核心类，所有的controller都继承这个核心类，也可实现。为了认识hooks这东西就选择用hooks。</p>
-<h3 id="hooks3">ci中使用hooks</h3>
-
-<p>详见<a href="http://codeigniter.org.cn/forums/thread-10877-1-1.html" target="_blank" rel="external">这里</a></p>
-<h2 id="hooks">demo</h2>
-
-<h3 id="hooks1">session验证和auth验证</h3>
-
-<p>首先说明session验证是确定是否存在这个会话，auth是获取具体用户的资料（username等），auth是session生成时，我们自己给每个用户设置的标识，也发送给客户端作为cookie贮存（这样做的好处是通过这个cookie标识，才知道用户是哪个id，方便也容易取客户的数据）。</p>
-<p>然后就是在hooks写个方法。</p>
-<p><img src="images/hooks.png" alt=""></p>
-<p>就像没用mvc之前，用户登录前写个函数拦截在前面。hooks其实在我看来就是监视某个用户行为，触发拦截处理。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -542,7 +555,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
